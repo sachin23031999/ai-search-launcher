@@ -1,0 +1,250 @@
+[
+  {
+    "id": "bluetooth",
+    "title": "Bluetooth devices",
+    "description": "Turn Bluetooth on or off and manage paired Bluetooth devices.",
+    "category": "Devices",
+    "deepLink": "ms-settings:bluetooth",
+    "synonyms": ["bluetooth", "wireless", "pair", "headphones", "earbuds", "airpods"]
+  },
+  {
+    "id": "wifi",
+    "title": "Wi-Fi",
+    "description": "Connect to wireless networks and manage Wi-Fi settings.",
+    "category": "Network Internet",
+    "deepLink": "ms-settings:network-wifi",
+    "synonyms": ["wifi", "wi-fi", "wireless", "network", "internet", "hotspot"]
+  },
+  {
+    "id": "airplane-mode",
+    "title": "Airplane mode",
+    "description": "Turn airplane mode on or off to disable all wireless communication.",
+    "category": "Network Internet",
+    "deepLink": "ms-settings:network-airplanemode",
+    "synonyms": ["airplane", "flight", "flightmode", "wireless"]
+  },
+  {
+    "id": "display",
+    "title": "Display",
+    "description": "Change screen resolution, scale, orientation and connected displays.",
+    "category": "System",
+    "deepLink": "ms-settings:display",
+    "synonyms": ["display", "screen", "resolution", "monitor", "scaling", "orientation", "brightness"]
+  },
+  {
+    "id": "night-light",
+    "title": "Night light",
+    "description": "Reduce blue light in the evening with night light.",
+    "category": "System",
+    "deepLink": "ms-settings:nightlight",
+    "synonyms": ["night", "light", "bluelight", "warm", "eye", "evening"]
+  },
+  {
+    "id": "colors-dark-mode",
+    "title": "Colors and dark mode",
+    "description": "Switch between light and dark mode and choose accent colors.",
+    "category": "Personalization",
+    "deepLink": "ms-settings:colors",
+    "synonyms": ["dark", "light", "theme", "color", "colours", "accent", "appearance", "mode"]
+  },
+  {
+    "id": "background",
+    "title": "Background",
+    "description": "Change your desktop wallpaper and background.",
+    "category": "Personalization",
+    "deepLink": "ms-settings:personalization-background",
+    "synonyms": ["background", "wallpaper", "desktop", "picture", "slideshow"]
+  },
+  {
+    "id": "sound",
+    "title": "Sound",
+    "description": "Choose output and input devices and adjust volume and sound settings.",
+    "category": "System",
+    "deepLink": "ms-settings:sound",
+    "synonyms": ["sound", "audio", "volume", "speaker", "microphone", "mic", "output", "input"]
+  },
+  {
+    "id": "power-sleep",
+    "title": "Power and battery",
+    "description": "Adjust power mode, screen and sleep timeouts, and battery saver.",
+    "category": "System",
+    "deepLink": "ms-settings:powersleep",
+    "synonyms": ["power", "battery", "sleep", "energy", "saver", "timeout", "hibernate"]
+  },
+  {
+    "id": "windows-update",
+    "title": "Windows Update",
+    "description": "Check for updates and manage update settings.",
+    "category": "Update Security",
+    "deepLink": "ms-settings:windowsupdate",
+    "synonyms": ["update", "updates", "upgrade", "patch", "windowsupdate"]
+  },
+  {
+    "id": "apps-installed",
+    "title": "Installed apps",
+    "description": "View, modify and uninstall installed applications.",
+    "category": "Apps",
+    "deepLink": "ms-settings:appsfeatures",
+    "synonyms": ["apps", "applications", "programs", "uninstall", "remove", "installed", "software"]
+  },
+  {
+    "id": "default-apps",
+    "title": "Default apps",
+    "description": "Choose default apps for browsing, email, music and more.",
+    "category": "Apps",
+    "deepLink": "ms-settings:defaultapps",
+    "synonyms": ["default", "apps", "browser", "email", "associations", "open"]
+  },
+  {
+    "id": "startup-apps",
+    "title": "Startup apps",
+    "description": "Choose which apps run automatically when you sign in.",
+    "category": "Apps",
+    "deepLink": "ms-settings:startupapps",
+    "synonyms": ["startup", "boot", "login", "autostart", "signin", "launch"]
+  },
+  {
+    "id": "notifications",
+    "title": "Notifications",
+    "description": "Manage notifications, banners and focus assist.",
+    "category": "System",
+    "deepLink": "ms-settings:notifications",
+    "synonyms": ["notifications", "alerts", "banners", "focus", "donotdisturb", "quiet"]
+  },
+  {
+    "id": "storage",
+    "title": "Storage",
+    "description": "See how storage is used and free up disk space.",
+    "category": "System",
+    "deepLink": "ms-settings:storagesense",
+    "synonyms": ["storage", "disk", "space", "cleanup", "drive", "capacity", "free"]
+  },
+  {
+    "id": "bluetooth-printers",
+    "title": "Printers and scanners",
+    "description": "Add and manage printers and scanners.",
+    "category": "Devices",
+    "deepLink": "ms-settings:printers",
+    "synonyms": ["printer", "scanner", "print", "scan"]
+  },
+  {
+    "id": "mouse",
+    "title": "Mouse",
+    "description": "Adjust mouse buttons, pointer speed and scrolling.",
+    "category": "Devices",
+    "deepLink": "ms-settings:mousetouchpad",
+    "synonyms": ["mouse", "pointer", "cursor", "scroll", "buttons"]
+  },
+  {
+    "id": "touchpad",
+    "title": "Touchpad",
+    "description": "Configure touchpad gestures, sensitivity and taps.",
+    "category": "Devices",
+    "deepLink": "ms-settings:devices-touchpad",
+    "synonyms": ["touchpad", "trackpad", "gestures", "taps", "swipe"]
+  },
+  {
+    "id": "keyboard-language",
+    "title": "Language and region",
+    "description": "Add languages, keyboards and change region formats.",
+    "category": "Time Language",
+    "deepLink": "ms-settings:regionlanguage",
+    "synonyms": ["language", "keyboard", "region", "locale", "input", "layout", "translate"]
+  },
+  {
+    "id": "date-time",
+    "title": "Date and time",
+    "description": "Set the date, time and time zone, automatically or manually.",
+    "category": "Time Language",
+    "deepLink": "ms-settings:dateandtime",
+    "synonyms": ["date", "time", "clock", "timezone", "zone"]
+  },
+  {
+    "id": "accounts",
+    "title": "Your info and accounts",
+    "description": "Manage your Microsoft account, sign-in and user accounts.",
+    "category": "Accounts",
+    "deepLink": "ms-settings:yourinfo",
+    "synonyms": ["account", "accounts", "user", "profile", "microsoft", "signin", "login"]
+  },
+  {
+    "id": "windows-hello",
+    "title": "Sign-in options",
+    "description": "Set up Windows Hello face, fingerprint, PIN and password.",
+    "category": "Accounts",
+    "deepLink": "ms-settings:signinoptions",
+    "synonyms": ["signin", "hello", "pin", "password", "fingerprint", "face", "biometric", "lock"]
+  },
+  {
+    "id": "windows-security",
+    "title": "Windows Security",
+    "description": "Antivirus, firewall and device protection.",
+    "category": "Update Security",
+    "deepLink": "ms-settings:windowsdefender",
+    "synonyms": ["security", "antivirus", "defender", "firewall", "virus", "protection", "threat"]
+  },
+  {
+    "id": "privacy-camera",
+    "title": "Camera privacy",
+    "description": "Control which apps can access your camera.",
+    "category": "Privacy Security",
+    "deepLink": "ms-settings:privacy-webcam",
+    "synonyms": ["camera", "webcam", "privacy", "video", "permission"]
+  },
+  {
+    "id": "privacy-microphone",
+    "title": "Microphone privacy",
+    "description": "Control which apps can access your microphone.",
+    "category": "Privacy Security",
+    "deepLink": "ms-settings:privacy-microphone",
+    "synonyms": ["microphone", "mic", "privacy", "permission", "voice"]
+  },
+  {
+    "id": "location",
+    "title": "Location privacy",
+    "description": "Turn location on or off and control app access to location.",
+    "category": "Privacy Security",
+    "deepLink": "ms-settings:privacy-location",
+    "synonyms": ["location", "gps", "privacy", "maps", "geolocation"]
+  },
+  {
+    "id": "accessibility-text-size",
+    "title": "Text size",
+    "description": "Make text bigger across Windows.",
+    "category": "Accessibility",
+    "deepLink": "ms-settings:easeofaccess-display",
+    "synonyms": ["text", "size", "font", "bigger", "larger", "accessibility", "readability"]
+  },
+  {
+    "id": "accessibility-magnifier",
+    "title": "Magnifier",
+    "description": "Zoom in on parts of the screen with Magnifier.",
+    "category": "Accessibility",
+    "deepLink": "ms-settings:easeofaccess-magnifier",
+    "synonyms": ["magnifier", "zoom", "enlarge", "accessibility", "vision"]
+  },
+  {
+    "id": "taskbar",
+    "title": "Taskbar",
+    "description": "Customize taskbar items, alignment and behaviors.",
+    "category": "Personalization",
+    "deepLink": "ms-settings:taskbar",
+    "synonyms": ["taskbar", "tray", "start", "pin", "alignment", "search", "widgets"]
+  },
+  {
+    "id": "multitasking",
+    "title": "Multitasking",
+    "description": "Configure snap layouts, snap windows and virtual desktops.",
+    "category": "System",
+    "deepLink": "ms-settings:multitasking",
+    "synonyms": ["multitasking", "snap", "layout", "windows", "desktops", "alt-tab"]
+  },
+  {
+    "id": "developer",
+    "title": "For developers",
+    "description": "Enable developer mode and related settings.",
+    "category": "System",
+    "deepLink": "ms-settings:developers",
+    "synonyms": ["developer", "devmode", "development", "ssh", "terminal", "sudo"]
+  }
+]
