@@ -66,17 +66,21 @@ val publishMcpServer by tasks.registering(Exec::class) {
 
 val bundleMcpServer by tasks.registering(Copy::class) {
     group = "distribution"
-    description = "Copies the published MCP server into app/resources/mcp-server for packaging."
+    description = "Copies the published MCP server into app/resources/common/mcp-server for packaging."
     dependsOn(publishMcpServer)
     from(mcpPublishDir)
-    into(layout.projectDirectory.dir("resources/mcp-server"))
+    // Compose Desktop only stages files under a platform folder (common = all OSes); files placed
+    // directly in appResourcesRootDir are ignored. At runtime these are flattened into the app's
+    // resources dir, so McpClient still resolves mcp-server/McpServer.exe under it.
+    into(layout.projectDirectory.dir("resources/common/mcp-server"))
 }
 
-// Ensure the MCP server bundle is in place BEFORE the app image is assembled or packaged.
-// createDistributable / createReleaseDistributable copy app/resources into the image, so they
-// must depend on bundleMcpServer; the package* installers depend on those in turn.
+// Ensure the MCP server bundle is in place BEFORE app resources are staged into the image.
+// prepareAppResources is the task that copies appResourcesRootDir into the distributable, so it
+// must depend on bundleMcpServer; the create*/package* tasks depend on prepareAppResources.
 tasks.matching {
-    it.name.startsWith("createDistributable") ||
+    it.name == "prepareAppResources" ||
+        it.name.startsWith("createDistributable") ||
         it.name.startsWith("createReleaseDistributable") ||
         it.name == "packageDistributionForCurrentOS" ||
         it.name.startsWith("package") && it.name != "packageUberJarForCurrentOS"
@@ -85,6 +89,14 @@ tasks.matching {
 compose.desktop {
     application {
         mainClass = "com.ai.search.MainKt"
+
+        // ProGuard minification of the release image chokes on Koog/ktor's large optional
+        // dependency graph (thousands of unresolved references) and aborts packaging. This is a
+        // desktop launcher, so disable minification and ship the full jars for a reliable MSI.
+        buildTypes.release.proguard {
+            isEnabled.set(false)
+        }
+
         nativeDistributions {
             targetFormats(TargetFormat.Msi, TargetFormat.Dmg, TargetFormat.Deb)
             packageName = "AISearchLauncher"
