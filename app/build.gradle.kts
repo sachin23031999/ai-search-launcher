@@ -43,6 +43,14 @@ tasks.register<JavaExec>("mcpSmoke") {
     classpath = sourceSets["main"].runtimeClasspath
 }
 
+// End-to-end: real LLM -> MCP tools -> results. Requires LLM_API_KEY in the environment.
+tasks.register<JavaExec>("e2eSmoke") {
+    group = "verification"
+    description = "Runs one natural-language query through the real Koog agent + MCP server."
+    mainClass.set("com.ai.search.orchestrator.E2eSmokeKt")
+    classpath = sourceSets["main"].runtimeClasspath
+}
+
 // ---- Assembly: publish the .NET MCP server and bundle it into the app image -------------------
 
 val dotnetExe: String = System.getenv("DOTNET_ROOT")
