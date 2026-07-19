@@ -44,3 +44,54 @@ jobs:
         env:
           MCP_SERVER_PATH: ${{ github.workspace }}\mcp-server\bin\Debug\net8.0-windows\McpServer.exe
         run: .\gradlew.bat :app:mcpSmoke --no-daemon --console=plain
+
+  e2e:
+    name: End-to-end (LLM)
+    runs-on: windows-latest
+    needs: build
+    # Provider/model come from repo Variables (with defaults); the key comes from a Secret.
+    env:
+      LLM_PROVIDER: ${{ vars.LLM_PROVIDER || 'openai' }}
+      LLM_MODEL: ${{ vars.LLM_MODEL || 'gpt-4o' }}
+      LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+
+    steps:
+      - name: Report whether an LLM key is configured
+        shell: bash
+        run: |
+          if [ -z "$LLM_API_KEY" ]; then
+            echo "::notice::LLM_API_KEY secret not set - the real end-to-end test will be skipped."
+          else
+            echo "::notice::LLM_API_KEY present - running end-to-end test with $LLM_PROVIDER / $LLM_MODEL."
+          fi
+
+      - name: Checkout
+        if: ${{ env.LLM_API_KEY != '' }}
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        if: ${{ env.LLM_API_KEY != '' }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up .NET 8
+        if: ${{ env.LLM_API_KEY != '' }}
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Set up Gradle
+        if: ${{ env.LLM_API_KEY != '' }}
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build .NET MCP server (Debug)
+        if: ${{ env.LLM_API_KEY != '' }}
+        run: dotnet build mcp-server/McpServer.csproj -c Debug -f net8.0-windows --nologo
+
+      - name: Run end-to-end agent test
+        if: ${{ env.LLM_API_KEY != '' }}
+        env:
+          MCP_SERVER_PATH: ${{ github.workspace }}\mcp-server\bin\Debug\net8.0-windows\McpServer.exe
+        run: .\gradlew.bat :app:e2eSmoke --no-daemon --console=plain
