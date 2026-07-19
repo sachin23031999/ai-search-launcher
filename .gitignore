@@ -12,7 +12,9 @@
 app/resources/mcp-server/
 
 # --- Vendored toolchain (self-contained JDK / Gradle / .NET; not source) ---
-tools/
+# Anchored to repo root so it does not also match mcp-server/Tools/ (git is
+# case-insensitive on Windows, and an unanchored "tools/" matches any depth).
+/tools/
 
 # --- IDE / OS ---
 .idea/
