@@ -72,9 +72,12 @@ val bundleMcpServer by tasks.registering(Copy::class) {
     into(layout.projectDirectory.dir("resources/mcp-server"))
 }
 
-// Make every Compose Desktop packaging/distributable task ship the bundled server.
+// Ensure the MCP server bundle is in place BEFORE the app image is assembled or packaged.
+// createDistributable / createReleaseDistributable copy app/resources into the image, so they
+// must depend on bundleMcpServer; the package* installers depend on those in turn.
 tasks.matching {
-    it.name == "createDistributable" ||
+    it.name.startsWith("createDistributable") ||
+        it.name.startsWith("createReleaseDistributable") ||
         it.name == "packageDistributionForCurrentOS" ||
         it.name.startsWith("package") && it.name != "packageUberJarForCurrentOS"
 }.configureEach { dependsOn(bundleMcpServer) }

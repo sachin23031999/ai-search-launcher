@@ -1,0 +1,60 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    name: Package Windows MSI
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      # Publishes the self-contained MCP server, bundles it into the app image,
+      # and produces the installer (packageReleaseMsi depends on bundleMcpServer).
+      - name: Build release MSI
+        run: .\gradlew.bat :app:packageReleaseMsi --no-daemon --console=plain
+
+      - name: Locate MSI
+        id: msi
+        shell: pwsh
+        run: |
+          $msi = Get-ChildItem app/build/compose/binaries/main-release/msi/*.msi | Select-Object -First 1
+          if (-not $msi) { throw "No MSI produced" }
+          "path=$($msi.FullName)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          Write-Host "MSI: $($msi.FullName)"
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: AISearchLauncher-msi
+          path: ${{ steps.msi.outputs.path }}
+          if-no-files-found: error
+
+      - name: Publish GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.msi.outputs.path }}
+          generate_release_notes: true
