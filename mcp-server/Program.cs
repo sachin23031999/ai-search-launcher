@@ -1,4 +1,5 @@
 using McpServer.Providers;
+using McpServer.Tools;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -40,6 +41,10 @@ builder.Services.AddSingleton<FilesProvider>();
 builder.Services
     .AddMcpServer()
     .WithStdioServerTransport()
-    .WithToolsFromAssembly();
+    // Register tool types explicitly (deterministic across environments) rather than
+    // relying on entry-assembly reflection scanning, which can discover zero tools when
+    // the host is launched via the framework-dependent apphost on CI runners.
+    .WithTools<SettingsSearchTool>()
+    .WithTools<FilesSearchTool>();
 
 await builder.Build().RunAsync();
